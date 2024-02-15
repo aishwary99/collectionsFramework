@@ -136,7 +136,7 @@ List<int> bag = new ArrayList(); // not allowed
 
 ![github-small](images/nine.png)
 
-#### Details :
+#### Implementation Details :
 - Collection Interface methods :
 
 ```
@@ -185,3 +185,69 @@ Object[] toArray()
 // Returns an array containing all of the elements in this collection; the runtime type of the returned array is that of the specified array.   
 <T> T[] toArray(T[] a)
 ```
+
+- List Interface Methods :
+
+```
+// Inserts the specified element at the specified position in this list.
+void add(int index, E element)
+
+// Inserts all of the elements in the specified collection into this list at the specified position.
+boolean addAll(int index, Collection<? extends E> c)
+
+// Returns the element at the specified position in this list.
+E get(int index) 
+
+// Returns the index of the first occurrence of the specified element in this list, or -1 if this list does not contain the element.
+int indexOf(Object o) 
+
+// Returns the index of the last occurrence of the specified element in this list, or -1 if this list does not contain the element.
+int lastIndexOf(Object o)
+
+// Returns a list iterator over the elements in this list (in proper sequence).
+ListIterator<E> listIterator() 
+
+// Returns a list iterator over the elements in this list (in proper sequence), starting at the specified position in the list.
+ListIterator<E> listIterator(int index) 
+
+// Removes the element at the specified position in this list.
+E remove(int index)
+
+// Replaces the element at the specified position in this list with the specified element.
+E set(int index, E element)
+
+// Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive.
+List<E> subList(int fromIndex, int toIndex)
+```
+
+- ArrayList Class Methods (Other than List Interface) :
+
+```
+// Trims the capacity of this ArrayList instance to be the list's current size. This is useful when you want to minimize the storage overhead of the ArrayList instance.
+void trimToSize()
+
+// Increases the capacity of this ArrayList instance, if necessary, to ensure that it can hold at least the number of elements specified by the minCapacity argument.
+void ensureCapacity(int minCapacity)
+
+// Performs the given action for each element of the ArrayList until all elements have been processed or the action throws an exception.
+void forEach(Consumer<? super E> action)
+
+// Replaces each element of this ArrayList with the result of applying the given operator to the element.
+void replaceAll(UnaryOperator<E> operator)
+
+// Sorts this ArrayList according to the order induced by the specified comparator.
+void sort(Comparator<? super E> c)
+
+// Removes all of the elements of this ArrayList that satisfy the given predicate.
+boolean removeIf(Predicate<? super E> filter)
+
+// Creates a late-binding and fail-fast Spliterator over the elements in this ArrayList.
+Spliterator<E> spliterator()
+```
+
+- Default capacity of ArrayList is 10.
+- New capacity formula is : newCapacity = (currentCapacity * 3/2) + 1;
+
+- Note : 
+    * Every collection class implements Serializable & Cloneable interface.
+    * ArrayList & Vector classes implements RandomAccess interface (Marker Interface).
