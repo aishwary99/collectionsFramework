@@ -20,3 +20,13 @@ Object[] objects = new Object[10];
 objects[0] = new Student();
 objects[1] = new Customer();
 ```
+
+##### Collections :
+- Collections are growable in nature. (We can overcome the problem of increasing/decreasing the capacity of array).
+- Collections can hold both homogeneous & heterogeneous objects.
+- Every collection class is based on some standard data structure.
+- Readymade method support is available, hence we don't have to explicitly write implementations.
+
+
+##### Difference between Arrays & Collections :
+- 
