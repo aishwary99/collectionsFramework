@@ -251,3 +251,88 @@ Spliterator<E> spliterator()
 - Note : 
     * Every collection class implements Serializable & Cloneable interface.
     * ArrayList & Vector classes implements RandomAccess interface (Marker Interface).
+
+```
+ArrayList arrayList = new ArrayList();
+LinkedList linkedList = new LinkedList();
+
+System.out.println(arrayList instanceOf Serializable); // true
+System.out.println(linkedList instanceOf Cloneable); // true
+
+System.out.println(arrayList instanceof RandomAccess); // true
+System.out.println(linkedList instanceOf RandomAccess); // false
+```
+- ArrayList is the best choice if our most frequent operation is retrieval operation. (Because it implements RandomAccess interface).
+- ArrayList is the worst choice if our most frequent operation is insertion/deletion in the middle. (Because several shift operations are required).
+
+#### Difference between ArrayList and Vector :
+- ArrayList : Every method present is non-synchronized. 
+- Vector : Every method present is synchronized.
+
+- ArrayList : Thread Safety is an issue.
+- Vector : Thread Safe.
+
+- ArrayList : Performance is relatively high.
+- Vector : Because of thread safety, some of the threads may have to wait in order to complete the tasks, thus low in performance.
+
+- ArrayList : Introduced in version 1.2 - non-legacy.
+- Vector : Introduced in version 1.0 - legacy (an old generation implementation).
+
+- ArrayList : Size grows using formula - (currentCapacity * (3/2)) + 1;
+- Vector : Size grows by doubling the current capacity - (currentCapacity * 2).
+
+#### Synchronized version of ArrayList :
+
+```
+ArrayList arrayList = new ArrayList(); // non-synchronized
+List list = Collections.synchronizedList(arrayList); // synchronized
+```
+
+- The synchronization wrappers add automatic synchronization (thread-safety) to an arbitrary collection. Each of the six core collection interfaces — Collection, Set, List, Map, SortedSet, and SortedMap — has one static factory method.
+
+```
+public static <T> Collection<T> synchronizedCollection(Collection<T> c);
+public static <T> Set<T> synchronizedSet(Set<T> s);
+public static <T> List<T> synchronizedList(List<T> list);
+public static <K,V> Map<K,V> synchronizedMap(Map<K,V> m);
+public static <T> SortedSet<T> synchronizedSortedSet(SortedSet<T> s);
+public static <K,V> SortedMap<K,V> synchronizedSortedMap(SortedMap<K,V> m);
+```
+
+- Each of these methods returns a synchronized (thread-safe) Collection backed up by the specified collection. To guarantee serial access.
+
+#### LinkedList Details & Implementation :
+- The underlying d.s in LinkedList class is DoublyLinkedList.
+- Insertion order is preserved.
+- Duplicates are allowed.
+- Heterogeneous objects are allowed.
+- Null insertion is possible.
+
+```
+// Methods
+void addFirst(E element);
+void addLast(E element);
+
+Object getFirst();
+Object getLast();
+
+Object removeFirst();
+Object removeLast();
+
+// Constructors
+LinkedList linkedList = new LinkedList();
+LinkedList linkedList = new LinkedList(Collection collection);
+```
+
+#### Difference between ArrayList & LinkedList :
+- ArrayList : Best for retrieval operations.
+- LinkedList : Best for insertion/deletion operations in the middle.
+
+- ArrayList : Worst for insertion/deletion operations in the middle. (As there are several shift operations required).
+- LinkedList : Worst for retrieval operation. (As iteration starts from the first node).
+
+- ArrayList : The underlying d.s is resizable & growable array.
+- LinkedList : Doubly Linked List is the underlying d.s.
+
+- ArrayList : Implements RandomAccess.
+- LinkedList : Doesn't implements RandomAccess.
