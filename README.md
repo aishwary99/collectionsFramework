@@ -531,3 +531,160 @@ while (iterator.hasNext()) {
     * Enumeration & Iterator always moves forward.
     * These are single direction cursors.
     * We can only perform - read & remove operations.
+
+- ListIterator :
+    * The most powerful cursor.
+    * A bi-directional cursor.
+    * We can perform - Remove, Read, Replacement, Addition operations.
+    * It comes from Iterator interface.
+
+```
+public ListIterator listIterator();
+Example : ListIterator lIterator = collection.listIterator();
+
+Methods :
+
+// Forward
+- public boolean hasNext();
+- public Object next();
+- public int nextIndex();
+
+// Backward
+- public boolean hasPrevious();
+- public Object previous();
+- public int previousIndex();
+
+// Removal
+- public void remove();
+
+// Replace
+- public void set(Object newObject);
+
+// Addition
+- public void add(Object newObject);
+```
+
+#### Comparison between three cursors :
+
+![github-small](images/ten.png)
+
+#### Set :
+
+- HashSet :
+    * Underlying d.s is hashtable.
+    * Duplicates are not allowed. (add method returns false).
+    * All objects are inserted based on their hashCodes, hence order is not preserved.
+    * Heterogeneous objects are allowed.
+    * Null object is allowed.
+    * Serializable & Cloneable implementation.
+    * Search/Retrieve operation is easy. [O(1) time complexity]
+
+```
+// Constructors
+
+// Default Capacity - 16, Fill Ratio - 0.75
+// Fill Ratio is also known as Load Factor.
+// Means, after 0.75% is filled, a new object is created for hashSet.
+HashSet hashSet = new HashSet(); 
+
+HashSet hashSet = new HashSet(int initialCapacity);
+
+HashSet hashSet = new HashSet(int initialCapacity, float loadFactor);
+
+HashSet hashSet = new HashSet(Collection collection);
+```
+
+- Hashtable, LinkedHashSet:
+
+![github-small](images/eleven.png)
+
+* Don't want duplicates, and ordering should be preserved, then LinkedHashSet is a go to data structure.
+
+- SortedSet :
+    * Child interface of set.
+    * It we want to group a set of individual objects according to some sorting order and duplicates are not allowed then we should go for sorted set.
+
+```
+// Methods
+Object first();
+Object last();
+
+SortedSet headSet(Object object);
+SortedSet tailSet(Object object);
+SortedSet subSet(Object one, Object two);
+
+Comparator comparator();
+```
+
+![github-small](images/twelve.png)
+
+#### TreeSet :
+- The underlying D.S is balanced tree.
+- Duplicate objects are not allowed.
+- Insertion order is not preserved, but all elements are inserted according to some sorting order.
+- Heterogeneous objects are not allowed. ClassCastException would be thrown.
+- Null insertion is allowed, but only once.
+
+```
+// Constructors
+TreeSet treeSet = new TreeSet(); // natural order sorting
+TreeSet treeSet = new TreeSet(Comparator comparator); // define custom comparator
+TreeSet treeSet = new TreeSet(Collection collection);
+TreeSet treeSet = new TreeSet(SortedSet sortedSet);
+
+// Examples
+TreeSet treeSet = new TreeSet();
+treeSet.add(new StringBuffer("A"));
+treeSet.add(new StringBuffer("Z"));
+treeSet.add(new StringBuffer("L"));
+treeSet.add(new StringBuffer("B"));
+
+System.out.println(treeSet); // ClassCastException
+// Note : If we are depending on natural ordering then objects should be homogeneous
+// and comparable (StringBuffer doesn't implements Comparable interface).
+// String class and all its wrapper classes implements Comparable interface.
+```
+
+#### Comparable Interface :
+- It comes from java.lang package.
+- It contains only one method - compareTo().
+
+```
+// Method
+public int compareTo(Object otherObject);
+
+// Example
+int result = objectOne.compareTo(objectTwo);
+if (result < 0) // objectOne will come before objectTwo
+else if (result == 0) // objectOne and objectTwo are equal
+else // objectOne will come after objectTwo
+```
+
+* Note : If we are depending on default natural ordering, internally JVM will call compareTo() method while inserting objects in TreeSet. Hence, the objects should be Comparable.
+
+#### Comparator Interface :
+- We use Comparator to define our custom sorting criteria (Customized Sorting).
+- Comparator Interface is present in java.util package.
+- If we are not satisfied with the predefined sorting ordering like String class, then we use Comparator.
+- It defines two methods :
+    ```
+    public int compare(Object one, Object two);
+    int result = comparator.compare(one, two);
+    if (result < 0) // objectOne will come before objectTwo
+    else if (result == 0) // objectOne and objectTwo are equal
+    else // objectOne will come after objectTwo
+
+    public boolean equals();
+    ```
+
+* Note : If we are defining our own Comparator, the objects need not to be Comparable.
+
+![github-small](images/thirteen.png)
+
+#### Difference between Comparable & Comparator :
+
+![github-small](images/fourteen.png)
+
+#### Comparison of Set implemented classes :
+
+![github-small](images/fifteen.png)
