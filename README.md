@@ -336,3 +336,198 @@ LinkedList linkedList = new LinkedList(Collection collection);
 
 - ArrayList : Implements RandomAccess.
 - LinkedList : Doesn't implements RandomAccess.
+
+
+#### Vector :
+- Underlying D.S is resizable or growable array.
+- Duplicates are allowed.
+- Insertion order is preserved.
+- Null insertion is possible.
+- Heterogeneous objects are allowed. (Except : TreeSet and TreeMap)
+- Implements Serializable, Cloneable, RandomAcess interfaces.
+- All the methods are synchronized.
+
+```
+        // Creating a Vector
+        Vector<Integer> vector = new Vector<>();
+
+        // Adding elements to the Vector
+        vector.add(1);
+        vector.add(2);
+        vector.add(3);
+
+        // Method: addElement(E obj)
+        vector.addElement(4);
+
+        // Method: capacity()
+        int capacity = vector.capacity();
+
+        // Method: clone()
+        Vector<Integer> clonedVector = (Vector<Integer>) vector.clone();
+
+        // Method: contains(Object elem)
+        boolean containsElement = vector.contains(2);
+
+        // Method: copyInto(Object[] anArray)
+        Integer[] newArray = new Integer[vector.size()];
+        vector.copyInto(newArray);
+
+        // Method: elementAt(int index)
+        int elementAtIndex = vector.elementAt(2);
+
+        // Method: elements()
+        // Returns an enumeration of the components of this vector.
+
+        // Method: ensureCapacity(int minCapacity)
+        vector.ensureCapacity(20);
+
+        // Method: firstElement()
+        int firstElement = vector.firstElement();
+
+        // Method: get(int index)
+        int element = vector.get(1);
+
+        // Method: indexOf(Object elem)
+        int indexOfElement = vector.indexOf(3);
+
+        // Method: indexOf(Object elem, int index)
+        int indexOfElementFromIndex = vector.indexOf(2, 1);
+
+        // Method: insertElementAt(E obj, int index)
+        vector.insertElementAt(5, 2);
+
+        // Method: isEmpty()
+        boolean isEmpty = vector.isEmpty();
+
+        // Method: lastElement()
+        int lastElement = vector.lastElement();
+
+        // Method: lastIndexOf(Object elem)
+        int lastIndexOfElement = vector.lastIndexOf(2);
+
+        // Method: lastIndexOf(Object elem, int index)
+        int lastIndexOfElementFromIndex = vector.lastIndexOf(2, 1);
+
+        // Method: remove(int index)
+        vector.remove(2);
+
+        // Method: removeElement(Object obj)
+        vector.removeElement(4);
+
+        // Method: removeElementAt(int index)
+        vector.removeElementAt(1);
+
+        // Method: removeAllElements()
+        vector.removeAllElements();
+
+        // Method: removeIf(Predicate<? super E> filter)
+        // Removes all elements of this vector that satisfy the given predicate.
+
+        // Method: retainAll(Collection<?> c)
+        // Retains only the elements in this vector that are contained in the specified collection.
+
+        // Method: set(int index, E element)
+        vector.set(0, 10);
+
+        // Method: setSize(int newSize)
+        vector.setSize(5);
+
+        // Method: size()
+        int size = vector.size();
+
+        // Method: subList(int fromIndex, int toIndex)
+        // Returns a view of the portion of this vector between the specified fromIndex, inclusive, and toIndex, exclusive.
+
+        // Method: toArray()
+        Object[] array = vector.toArray();
+
+        // Method: toArray(T[] a)
+        Integer[] newArray2 = vector.toArray(new Integer[0]);
+
+        // Method: toString()
+        String vectorAsString = vector.toString();
+
+        // Constructors
+        Vector vector = new Vector();
+        Vector vector = new Vector(int initialCapacity);
+        Vector vector = new Vector(int initialCapacity, int incrementalCapacity);
+        Vector vector = new Vector(Collection collection);
+```
+
+#### Stack :
+
+```
+Object push(Object object);
+Object pop();
+Object peek();
+int search(Object object);
+```
+
+#### Cursors :
+- To retrieve elements from the Collection one by one, we use cursors.
+
+```
+1. Enumeration
+2. Iterator
+3. ListIterator
+```
+
+- Enumeration :
+
+```
+// To get an enumeration for any collection
+public Enumeration elements();
+
+Example :
+Enumeration enumeration = vector.elements();
+
+Methods :
+1. public boolean hasMoreElements();
+2. public Object nextElement();
+
+Code Snippet :
+
+Vector<Integer> vector = new Vector();
+for (int index = 0; index < 10; index++) {
+	vector.add(index * 10);
+}
+		
+Enumeration<Integer> enumeration = vector.elements();
+while (enumeration.hasMoreElements()) {
+	System.out.println((Integer) enumeration.nextElement());
+}
+```
+* Issue - Enumeration is applicable only for legacy classes.
+
+- Iterator : 
+    * With iterators, we can apply read/remove operations.
+    * It is a universal cursor and can be applied on any collection object.
+
+```
+// To get the iterator for any collection object
+public Iterator iterator();
+
+Example :
+Iterator iterator = list.iterator();
+
+Methods :
+public boolean hasNext();
+public Object next();
+public void remove();
+
+Code Snippet :
+
+List<Integer> list = new ArrayList();
+for (int index = 0; index < 10; index++) {
+	list.add(index * 10);
+}
+		
+Iterator iterator = (Iterator) list.iterator();
+while (iterator.hasNext()) {
+	System.out.println(iterator.next());
+}
+```
+- Limitations of Iterator :
+    * Enumeration & Iterator always moves forward.
+    * These are single direction cursors.
+    * We can only perform - read & remove operations.
